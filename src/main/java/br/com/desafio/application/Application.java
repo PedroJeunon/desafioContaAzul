@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Classe de inicialização SpringBoot.
- * d
- * @author LuizTadF
+ * 
+ * @author CruzPH
  *
  */
 @SpringBootApplication
@@ -22,9 +22,9 @@ public class Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		LOG.info("Microservice Liberação Starting...");
+		LOG.info("Iniciando API...");
 		SpringApplication.run(Application.class, args);
-		LOG.info("Microservice Liberação Started!");
+		LOG.info("API iniciada!");
 	}
 
 }
