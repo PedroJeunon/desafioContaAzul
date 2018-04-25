@@ -1,18 +1,35 @@
 package br.com.desafio.domain;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
 public class Boleto {
 
+	@Id
 	private String id;
-	private String due_date;
-	private String total_in_cents;
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date due_date;
+	@NotNull
+	private BigDecimal total_in_cents;
+	@NotNull
 	private String customer;
-	private String status;
+	@NotNull
+	private StatusEnum status;
 
 	public Boleto() {
 
 	}
 
-	public Boleto(String id, String due_date, String total_in_cents, String customer, String status) {
+	public Boleto(String id, Date due_date, BigDecimal total_in_cents, String customer, StatusEnum status) {
 		this.id = id;
 		this.due_date = due_date;
 		this.total_in_cents = total_in_cents;
@@ -38,7 +55,7 @@ public class Boleto {
 	/**
 	 * @return the due_date
 	 */
-	public String getDue_date() {
+	public Date getDue_date() {
 		return due_date;
 	}
 
@@ -46,14 +63,14 @@ public class Boleto {
 	 * @param due_date
 	 *            the due_date to set
 	 */
-	public void setDue_date(String due_date) {
+	public void setDue_date(Date due_date) {
 		this.due_date = due_date;
 	}
 
 	/**
 	 * @return the total_in_cents
 	 */
-	public String getTotal_in_cents() {
+	public BigDecimal getTotal_in_cents() {
 		return total_in_cents;
 	}
 
@@ -61,7 +78,7 @@ public class Boleto {
 	 * @param total_in_cents
 	 *            the total_in_cents to set
 	 */
-	public void setTotal_in_cents(String total_in_cents) {
+	public void setTotal_in_cents(BigDecimal total_in_cents) {
 		this.total_in_cents = total_in_cents;
 	}
 
@@ -83,7 +100,7 @@ public class Boleto {
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
@@ -91,7 +108,7 @@ public class Boleto {
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}
 
