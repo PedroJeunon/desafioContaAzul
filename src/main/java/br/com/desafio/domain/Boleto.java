@@ -1,11 +1,9 @@
 package br.com.desafio.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,17 +17,17 @@ public class Boleto {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date due_date;
 	@NotNull
-	private BigDecimal total_in_cents;
+	private int total_in_cents;
 	@NotNull
 	private String customer;
 	@NotNull
-	private StatusEnum status;
+	private String status;
 
 	public Boleto() {
 
 	}
 
-	public Boleto(String id, Date due_date, BigDecimal total_in_cents, String customer, StatusEnum status) {
+	public Boleto(String id, Date due_date, int total_in_cents, String customer, String status) {
 		this.id = id;
 		this.due_date = due_date;
 		this.total_in_cents = total_in_cents;
@@ -70,7 +68,7 @@ public class Boleto {
 	/**
 	 * @return the total_in_cents
 	 */
-	public BigDecimal getTotal_in_cents() {
+	public int getTotal_in_cents() {
 		return total_in_cents;
 	}
 
@@ -78,7 +76,7 @@ public class Boleto {
 	 * @param total_in_cents
 	 *            the total_in_cents to set
 	 */
-	public void setTotal_in_cents(BigDecimal total_in_cents) {
+	public void setTotal_in_cents(int total_in_cents) {
 		this.total_in_cents = total_in_cents;
 	}
 
@@ -100,7 +98,7 @@ public class Boleto {
 	/**
 	 * @return the status
 	 */
-	public StatusEnum getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
@@ -108,7 +106,7 @@ public class Boleto {
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(StatusEnum status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -125,7 +123,7 @@ public class Boleto {
 		result = prime * result + ((due_date == null) ? 0 : due_date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((total_in_cents == null) ? 0 : total_in_cents.hashCode());
+		result = prime * result + total_in_cents;
 		return result;
 	}
 
@@ -158,15 +156,9 @@ public class Boleto {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
+		if (status != other.status)
 			return false;
-		if (total_in_cents == null) {
-			if (other.total_in_cents != null)
-				return false;
-		} else if (!total_in_cents.equals(other.total_in_cents))
+		if (total_in_cents != other.total_in_cents)
 			return false;
 		return true;
 	}

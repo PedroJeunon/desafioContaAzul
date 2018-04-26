@@ -2,12 +2,9 @@ package br.com.desafio.application;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.desafio.domain.Boleto;
-import br.com.desafio.domain.StatusEnum;
 import br.com.desafio.exception.MensagensResposta;
 import br.com.desafio.service.DesafioService;
 
@@ -54,13 +50,13 @@ public class DesafioController {
 	 * @return List<Boleto>
 	 */
 	@RequestMapping(path = "/bankslips", method = RequestMethod.GET)
-	public ResponseEntity<List<Boleto>> listarBoletos() {
+	public ResponseEntity<Object> listarBoletos() {
 		List<Boleto> boletos = desafioService.listarBoletos();
 		if (boletos.isEmpty()) {
-			return new ResponseEntity<List<Boleto>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Object>(new MensagensResposta("There no are bankslips"), HttpStatus.NO_CONTENT);
 		}
 
-		return new ResponseEntity<List<Boleto>>(boletos, HttpStatus.OK);
+		return new ResponseEntity<Object>(boletos, HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/bankslips/{id}", method = RequestMethod.GET)
@@ -70,31 +66,29 @@ public class DesafioController {
 	}
 
 	@RequestMapping(path = "/bankslips/{id}/pay", method = RequestMethod.PUT)
-	public ResponseEntity<Object> pagarBoleto(@PathVariable("id") String id,
-			@PathVariable("status") StatusEnum status) {
-		return alterarStatus(id, status);
+	public ResponseEntity<Object> pagarBoleto(@PathVariable("id") String id, @RequestBody Boleto boleto) {
+		return alterarStatus(id, boleto);
 	}
 
 	@RequestMapping(path = "/bankslips/{id}/cancel", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> cancelarBoleto(@PathVariable("id") String id,
-			@PathVariable("status") StatusEnum status) {
-		return alterarStatus(id, status);
+	public ResponseEntity<Object> cancelarBoleto(@PathVariable("id") String id, @RequestBody Boleto boleto) {
+		return alterarStatus(id, boleto);
 	}
 
-	private ResponseEntity<Object> alterarStatus(String id, StatusEnum status) {
+	private ResponseEntity<Object> alterarStatus(String id, Boleto boleto) {
 		try {
-			desafioService.alterarStatusBoleto(id, status);
-		} catch (Exception e) {
-			// Condição criada para verificar se o boleto ja foi cancelado
-			if (e.equals("Bankslip not modified")) {
-				return new ResponseEntity<Object>(new MensagensResposta(e.getMessage()), HttpStatus.NOT_MODIFIED);
-			} else {
-
-				return new ResponseEntity<Object>(new MensagensResposta(e.getMessage()), HttpStatus.NOT_FOUND);
-			}
+			desafioService.alterarStatusBoleto(id, boleto);
+		} catch (NoSuchFieldException e) {
+			return new ResponseEntity<Object>(new MensagensResposta(e.getMessage()), HttpStatus.NOT_FOUND);
+		} catch (Exception n) {
+			// Condicao criada para nao alterar o status do boleto caso nao tenha atendido
+			// algumas regras.
+			// id da URL deve ser o mesmo passado. O status nao deve ser igual ao status
+			// anterior.
+			return new ResponseEntity<Object>(new MensagensResposta(n.getMessage()), HttpStatus.NOT_MODIFIED);
 		}
-
-		return new ResponseEntity<Object>(new MensagensResposta(status.getTexto()), HttpStatus.OK);
+		return new ResponseEntity<Object>(new MensagensResposta("Bankslips " + boleto.getStatus().toLowerCase()),
+				HttpStatus.OK);
 	}
 
 }

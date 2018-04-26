@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.desafio.domain.Boleto;
 import br.com.desafio.domain.BoletoRepository;
-import br.com.desafio.domain.StatusEnum;
-import br.com.desafio.utils.Utils;
 
 @Service
 public class DesafioService {
@@ -18,15 +16,15 @@ public class DesafioService {
 	private BoletoRepository repository;
 
 	public Boleto criarBoleto(Boleto boleto) throws Exception {
-		/*
-		 * if (Utils.existeCamposVazios(boleto)) { return null; }
-		 */
+		try {
+			// Metodo para geração do ID randomico
+			String uuid = UUID.randomUUID().toString();
+			boleto.setId(uuid);
+			return repository.save(boleto);
+		} catch (Exception e) {
+			throw new Exception("Bankslip not found with the specified id");
+		}
 
-		// Metodo para geração do ID randomico
-		String uuid = UUID.randomUUID().toString();
-		boleto.setId(uuid);
-
-		return repository.save(boleto);
 	}
 
 	public Boleto recuperarBoleto(String id) {
@@ -37,18 +35,17 @@ public class DesafioService {
 		return repository.findAll();
 	}
 
-	// TODO Ver retorno de status
-	public Boleto alterarStatusBoleto(String id, StatusEnum novo) throws Exception {
-		Boleto boleto = repository.findById(id).get();
-		if (boleto == null) {
-			throw new Exception("Bankslip not found with the specified id");
-		}
-
-		if (boleto.getStatus().equals(novo)) {
-			throw new Exception("Bankslip not modified");
-		} else {
-			boleto.setStatus(novo);
-			return repository.save(boleto);
+	public Boleto alterarStatusBoleto(String id, Boleto boletoEntrada) throws Exception {
+		try {
+			Boleto boleto = repository.findById(id).get();
+			if (boleto.getStatus().equals(boletoEntrada.getStatus()) || !boletoEntrada.getId().equals(id)) {
+				throw new Exception("Bankslip not modified");
+			} else {
+				boleto.setStatus(boletoEntrada.getStatus());
+				return repository.save(boleto);
+			}
+		} catch (Exception e) {
+			throw new NoSuchFieldException("Bankslip not found with the specified id");
 		}
 	}
 
