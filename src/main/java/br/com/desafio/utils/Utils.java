@@ -1,12 +1,23 @@
 package br.com.desafio.utils;
 
 import java.util.Date;
+import java.util.UUID;
 
 import br.com.desafio.domain.Boleto;
+import br.com.desafio.domain.MensagensRespostaEnum;
 
 public abstract class Utils {
 
 	public static Boolean validarDataValida(Date data) {
+		return true;
+	}
+
+	public static Boolean UUIDvalido(String uuidBody) {
+		try {
+			UUID.fromString(uuidBody);
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
 		return true;
 	}
 

@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.desafio.domain.Boleto;
-import br.com.desafio.exception.MensagensResposta;
+import br.com.desafio.domain.BoletoDetalhe;
+import br.com.desafio.domain.MensagensRespostaEnum;
 import br.com.desafio.service.DesafioService;
 
 /**
@@ -30,18 +31,8 @@ public class DesafioController {
 
 	@RequestMapping(path = "/bankslips", method = RequestMethod.POST)
 	public ResponseEntity<Object> criarBoleto(@RequestBody Boleto boleto) {
-
-		try {
-			boleto = desafioService.criarBoleto(boleto);
-		} catch (Exception e) {
-			return new ResponseEntity<Object>(
-					new MensagensResposta("Invalid bankslip provided.The possible reasons are:\r\n"
-							+ "A field of the provided bankslip was null or with invalid values"),
-					HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-
-		return new ResponseEntity<Object>(new MensagensResposta("Bankslip created"), HttpStatus.CREATED);
-
+		MensagensRespostaEnum retorno = desafioService.criarBoleto(boleto);
+		return new ResponseEntity<Object>(retorno.getResposta(), retorno.getStatus());
 	}
 
 	/**
@@ -51,18 +42,19 @@ public class DesafioController {
 	 */
 	@RequestMapping(path = "/bankslips", method = RequestMethod.GET)
 	public ResponseEntity<Object> listarBoletos() {
-		List<Boleto> boletos = desafioService.listarBoletos();
+		List<BoletoDetalhe> boletos = desafioService.listarBoletos();
 		if (boletos.isEmpty()) {
-			return new ResponseEntity<Object>(new MensagensResposta("There no are bankslips"), HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Object>(MensagensRespostaEnum.RET_FIND_NO_CONTENT.getStatus());
 		}
+		
 
 		return new ResponseEntity<Object>(boletos, HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/bankslips/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Boleto> detalharBoleto(@PathVariable("id") String id) {
-		Boleto bol = desafioService.recuperarBoleto(id);
-		return new ResponseEntity<Boleto>(bol, HttpStatus.ALREADY_REPORTED);
+	public ResponseEntity<Boleto> detalharBoleto(@PathVariable("id") String id) throws Exception {
+		Boleto boleto = desafioService.recuperarBoleto(id);
+		return new ResponseEntity<Boleto>(boleto, HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/bankslips/{id}/pay", method = RequestMethod.PUT)
@@ -76,19 +68,8 @@ public class DesafioController {
 	}
 
 	private ResponseEntity<Object> alterarStatus(String id, Boleto boleto) {
-		try {
-			desafioService.alterarStatusBoleto(id, boleto);
-		} catch (NoSuchFieldException e) {
-			return new ResponseEntity<Object>(new MensagensResposta(e.getMessage()), HttpStatus.NOT_FOUND);
-		} catch (Exception n) {
-			// Condicao criada para nao alterar o status do boleto caso nao tenha atendido
-			// algumas regras.
-			// id da URL deve ser o mesmo passado. O status nao deve ser igual ao status
-			// anterior.
-			return new ResponseEntity<Object>(new MensagensResposta(n.getMessage()), HttpStatus.NOT_MODIFIED);
-		}
-		return new ResponseEntity<Object>(new MensagensResposta("Bankslips " + boleto.getStatus().toLowerCase()),
-				HttpStatus.OK);
+		MensagensRespostaEnum retorno = desafioService.alterarStatusBoleto(id, boleto);
+		return new ResponseEntity<Object>(retorno.getResposta(), retorno.getStatus());
 	}
 
 }
