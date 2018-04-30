@@ -10,7 +10,7 @@ No final do desafio vamos ter os seguintes endpoints para:
 
 * Algumas descrições estão em .gif para visualizar melhor a forma de utilização.
 
-## Ferramentas Utilizadas##
+## Ferramentas Utilizadas ##
  - Java 8
  - Banco de dados H2
  - Maven
@@ -18,38 +18,45 @@ No final do desafio vamos ter os seguintes endpoints para:
  - Junit
  - Postman
 
-## Criando Projeto ##
+## 1. Criando Projeto ##
 
-#### Clonando projeto #### 
+#### 1.1 Clonando projeto #### 
  
 Clone do projeto no github:
 
     git clone https://github.com/PedroJeunon/desafioContaAzul.git
 
-#### Importando Projeto STS ####  
+#### 1.2 Importando Projeto STS ####  
 
 <img src="docs/ImportandoSTS.gif" />
 
 
-#### Executando projeto STS ####
+#### 1.3 Executando projeto STS ####
 
 <img src="docs/ExecutandoSTS.gif" />
 
 
-#### Rodando testes unitarios STS #### 
+#### 1.4 Rodando testes unitarios STS #### 
 
 <img src="docs/TestesUnitariosTS.gif" />
 
 
-## Testes automatizados Postman ##
+## 2. Testes automatizados Postman ##
+O arquivo para realização dos testes estao dentro do projeto na pasta de ![test](https://github.com/PedroJeunon/desafioContaAzul/blob/master/src/test/ContaAzul.postman_collection.json)
 
-#### Importando Projeto Postman ####
+#### 2.1 Importando Projeto Postman ####
 
 <img src="docs/ImportandoPostman.gif" />
 
-#### Executando Projeto Postman ####
+#### 2.2 Executando Projeto Postman ####
 
 <img src="docs/ExecutandoPostman.gif" />
+
+
+
+## 3. Acompanhamento do Projeto ##
+
+O projeto foi planejado e executado utilizando a ferramenta do trello. O ![quadro](https://trello.com/b/MawSr9TJ/desafio-conta-azul) está disponivel para visualização.
 
 
 
