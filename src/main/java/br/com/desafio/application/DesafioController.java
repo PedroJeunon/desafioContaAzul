@@ -46,7 +46,6 @@ public class DesafioController {
 		if (boletos.isEmpty()) {
 			return new ResponseEntity<Object>(MensagensRespostaEnum.RET_FIND_NO_CONTENT.getStatus());
 		}
-		
 
 		return new ResponseEntity<Object>(boletos, HttpStatus.OK);
 	}

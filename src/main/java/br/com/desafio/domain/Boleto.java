@@ -37,11 +37,11 @@ public class Boleto {
 		this.fine = fine;
 	}
 
-	public Boleto(String id, Date due_date, int total_in_cents, String customer) {
-		this.id = id;
+	public Boleto(Date due_date, int total_in_cents, String customer, StatusEnum status) {
 		this.due_date = due_date;
 		this.total_in_cents = total_in_cents;
 		this.customer = customer;
+		this.status = status;
 	}
 
 	/**

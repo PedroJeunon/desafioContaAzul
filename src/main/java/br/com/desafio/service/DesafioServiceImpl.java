@@ -111,4 +111,12 @@ public class DesafioServiceImpl implements DesafioService {
 		}
 	}
 
+	public void deleteAll() {
+		repository.deleteAll();
+	}
+	
+	public Boleto findByCustomer(String customer) {
+		return repository.findByCustomer(customer);
+	}
+
 }

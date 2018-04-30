@@ -15,5 +15,9 @@ public interface DesafioService {
 	List<BoletoDetalhe> listarBoletos();
 
 	MensagensRespostaEnum alterarStatusBoleto(String id, Boleto boletoEntrada);
+	
+	void deleteAll();
+
+	Boleto findByCustomer(String customer);
 
 }

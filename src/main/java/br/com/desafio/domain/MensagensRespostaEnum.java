@@ -10,19 +10,27 @@ import org.springframework.http.HttpStatus;
  */
 public enum MensagensRespostaEnum {
 
-	RET_CREATED_SUCCESS("Bankslip created", HttpStatus.CREATED), RET_CREATED_INVALID(
-			"Invalid bankslip provided.The possible reasons are:\r\n"
+	RET_CREATED_SUCCESS("Bankslip created", HttpStatus.CREATED), 
+	RET_CREATED_INVALID(
+			"Invalid bankslip provided.The possible reasons are: "
 					+ "A field of the provided bankslip was null or with invalid values",
-			HttpStatus.UNPROCESSABLE_ENTITY), RET_CREATE_ERROR("Bankslip not provided in the request body",
-					HttpStatus.BAD_REQUEST), RET_FIND_NO_CONTENT("There no are bankslips",
-							HttpStatus.NO_CONTENT), RET_FIND_NOT_FOUND("Bankslip not found with the specified id",
-									HttpStatus.NOT_FOUND), RET_UPDATE_INVALID(
+			HttpStatus.UNPROCESSABLE_ENTITY), 
+	RET_CREATE_ERROR("Bankslip not provided in the request body",
+					HttpStatus.BAD_REQUEST), 
+	RET_FIND_NO_CONTENT("There no are bankslips",
+							HttpStatus.NO_CONTENT), 
+	RET_FIND_NOT_FOUND("Bankslip not found with the specified id",
+									HttpStatus.NOT_FOUND), 
+	RET_UPDATE_INVALID(
 											"Bankslip not modified.The status is the same or ID of link does not corresponding the ID of body or Status was invalid",
-											HttpStatus.FORBIDDEN), RET_FIND_INVALID_ID(
+											HttpStatus.FORBIDDEN), 
+	RET_FIND_INVALID_ID(
 													"Invalid id provided - it must be a valid UUID",
-													HttpStatus.BAD_REQUEST), RET_UPDATE_SUCCESS_CANCELLED(
+													HttpStatus.BAD_REQUEST), 
+	RET_UPDATE_SUCCESS_CANCELLED(
 															"Bankslips cancelled",
-															HttpStatus.OK), RET_UPDATE_SUCCESS_PAID("Bankslips paid",
+															HttpStatus.OK), 
+	RET_UPDATE_SUCCESS_PAID("Bankslips paid",
 																	HttpStatus.OK);
 
 	private String resposta;
