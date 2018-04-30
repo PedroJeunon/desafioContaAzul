@@ -1,4 +1,4 @@
-# Desafio #
+﻿# Desafio #
 O objetivo do desafio é construir uma API REST para geração de boletos que será
 consumido por um módulo de um sistema de gestão financeira de microempresas.
 No final do desafio vamos ter os seguintes endpoints para:
@@ -28,18 +28,28 @@ Clone do projeto no github:
 
 #### Importando Projeto STS ####  
 
+<img src="docs/ImportandoSTS.gif" />
+
 
 #### Executando projeto STS ####
 
+<img src="docs/ExecutandoSTS.gif" />
+
 
 #### Rodando testes unitarios STS #### 
+
+<img src="docs/TestesUnitariosTS.gif" />
 
 
 ## Testes automatizados Postman ##
 
 #### Importando Projeto Postman ####
 
+<img src="docs/ImportandoPostman.gif" />
+
 #### Executando Projeto Postman ####
+
+<img src="docs/ExecutandoPostman.gif" />
 
 
 
