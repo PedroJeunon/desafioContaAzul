@@ -74,12 +74,84 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - 422 : Invalid bankslip provided.The possible reasons are: A field of the provided bankslip was null or with invalid values
 
 #### 3.2. Listar boletos ####
+- Metodo GET
+- URL http://localhost:8080/rest/bankslips
+- Saida JSON
+<pre><code>
+	[
+		{
+			"id":"84e8adbf-1a14-403b-ad73-d78ae19b59bf",
+			"due_date":"2018-01-01",
+			"total_in_cents":"100000",
+			"customer":"Ford Prefect Company",
+		},
+		{
+		"id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
+		"due_date":"2018-02-01",
+		"total_in_cents":"200000",
+		"customer":"Zaphod Company",
+		}
+	]
+</code></pre>
+
+<strong>Mensagens Respostas</strong>:
+- 200 : OK
+- 204 : No Content
+
 
 #### 3.3. Ver detalhes ####
+- Metodo GET
+- URL http://localhost:8080/rest/bankslips/{id}
+- Saida JSON
+<pre><code>
+	{
+		 "id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
+		 "due_date":"2018-01-01",
+		 "total_in_cents":"100000",
+		 "customer":"Ford Prefect Company",
+		 "fine":"1000",
+		 "status":"PENDING"
+	}
+</code></pre>
+
+<strong>Mensagens Respostas</strong>:
+- 200 : Ok
+- 400 : Invalid id provided - it must be a valid UUID
+- 404 : Bankslip not found with the specified id
+
 
 #### 3.4. Pagar um boleto ####
+- Metodo PUT
+- URL http://localhost:8080/rest/bankslips/{id}/pay
+- Saida JSON
+<pre><code>
+	{
+		"id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
+		"status":"PAID"
+	}
+</code></pre>
+
+<strong>Mensagens Respostas</strong>:
+- 200 : Bankslip paid
+- 403 : Bankslip not modified.The status is the same or ID of link does not corresponding the ID of body or Status was invalid
+- 404 : Bankslip not found with the specified id
 
 #### 3.5. Cancelar um boleto ####
+
+- Metodo DELETE
+- URL http://localhost:8080/rest/bankslips/{id}/cancel
+- Saida JSON
+<pre><code>
+	{
+		"id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
+		"status":"CANCELLED"
+	}
+</code></pre>
+
+<strong>Mensagens Respostas</strong>:
+- 200 : Bankslip cancelled
+- 403 : Bankslip not modified.The status is the same or ID of link does not corresponding the ID of body or Status was invalid
+- 404 : Bankslip not found with the specified id
 
 ## 4. Acompanhamento do Projeto ##
 
