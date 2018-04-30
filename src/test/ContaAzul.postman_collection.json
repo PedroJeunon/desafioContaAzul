@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "b336fae4-54f0-495f-8936-f3eecb380990",
+		"name": "Conta Azul",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Teste Criar Boleto OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "62ef49ce-ce72-41ce-92b0-2c3595ae9f30",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"tests[\"Body matches string\"] = responseBody.has(\"Bankslip created\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"due_date\": \"2018-04-29\",\n\t\"total_in_cents\": 1000000,\n\t\"customer\": \"Customer 1\",\n\t\"status\": \"PENDING\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/bankslips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"bankslips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Busca Boletos OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3b4d69b-53bd-40b2-b1bc-2c598eef40de",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"id\", jsonData[0].id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/rest/bankslips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"bankslips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Busca Detalhes Boleto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea0bde35-5f31-4bae-84c7-e47e2c9ac4ac",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var jsonData = JSON.parse(responseBody);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/rest/bankslips/f17b3007-4a03-4846-a940-3050d1f451e2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"bankslips",
+						"f17b3007-4a03-4846-a940-3050d1f451e2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Pagar Boleto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c02c94c-7663-4942-81b1-06ede9dca3d0",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"Bankslips paid\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"{{id}}\",\n\t\"status\": \"PAID\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/bankslips/{{id}}/pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"bankslips",
+						"{{id}}",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teste Cancelar Boleto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8ee32fb9-329f-47b3-b41a-1ec6b8e3efd9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"Bankslips cancelled\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"{{id}}\",\n\t\"status\": \"CANCELLED\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/bankslips/{{id}}/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"bankslips",
+						"{{id}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
