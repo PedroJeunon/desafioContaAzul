@@ -56,15 +56,17 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 
 #### 3.1. Criar boleto ####
 
-Metodo POST
-URL http://localhost:8080/rest/bankslips
-Entrada JSON
+- Metodo POST
+- URL http://localhost:8080/rest/bankslips
+- Entrada JSON
+'''
 	{
 		"due_date":"2018-01-01",
 		"total_in_cents":"100000",
 		"customer":"Trillian Company",
 		"status":"PENDING"
 	}
+'''
 
 Mensagens Respostas
 - 201 : Bankslip created
