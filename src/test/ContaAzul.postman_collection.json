@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/rest/bankslips/f17b3007-4a03-4846-a940-3050d1f451e2",
+					"raw": "http://localhost:8080/rest/bankslips/{{id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -112,7 +112,7 @@
 					"path": [
 						"rest",
 						"bankslips",
-						"f17b3007-4a03-4846-a940-3050d1f451e2"
+						"{{id}}"
 					]
 				}
 			},
