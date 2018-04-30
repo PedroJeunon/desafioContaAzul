@@ -1,24 +1,19 @@
-# desafioContaAzul
+# Desafio #
 
-Cria
+### Ferramentas ###
+ - Java 8
+ - Banco de dados H2
+ - Maven
+ - Spring boot
+ - Junit
+ - Postman
 
-POST http://localhost:8080/rest/bankslips
+### Criando Projeto ###
 
-Busca tudo
-
-GET http://localhost:8080/rest/bankslips
-
-Busca 1
-
-GET http://localhost:8080/rest/bankslips/3
-
+#### Clonando projeto #### 
  
+Clone do projeto no github:
 
-Paga
+    git clone https://github.com/PedroJeunon/desafioContaAzul.git
 
-PUT http://localhost:8080/rest/bankslips/789c0fa9-0691-432d-a544-e2d73237c18e/pay
-
-
-Cancela
-
-DELETE http://localhost:8080/rest/bankslips
+#### Importando Projeto STS ####  
