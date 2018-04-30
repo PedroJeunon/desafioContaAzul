@@ -42,7 +42,7 @@ Clone do projeto no github:
 
 
 ## 2. Testes automatizados Postman ##
-O arquivo para realização dos testes estao dentro do projeto na pasta de ![test](https://github.com/PedroJeunon/desafioContaAzul/blob/master/src/test/ContaAzul.postman_collection.json)
+O arquivo para realização dos testes estao dentro do projeto na pasta de [test](https://github.com/PedroJeunon/desafioContaAzul/blob/master/src/test/ContaAzul.postman_collection.json)
 
 #### 2.1 Importando Projeto Postman ####
 
@@ -56,7 +56,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de ![tes
 
 ## 3. Acompanhamento do Projeto ##
 
-O projeto foi planejado e executado utilizando a ferramenta do trello. O ![quadro](https://trello.com/b/MawSr9TJ/desafio-conta-azul) está disponivel para visualização.
+O projeto foi planejado e executado utilizando a ferramenta do trello. O [quadro](https://trello.com/b/MawSr9TJ/desafio-conta-azul) está disponivel para visualização.
 
 
 
