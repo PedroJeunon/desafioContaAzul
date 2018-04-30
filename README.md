@@ -20,23 +20,23 @@ No final do desafio vamos ter os seguintes endpoints para:
 
 ## 1. Criando Projeto ##
 
-#### 1.1. Clonando projeto #### 
+### 1.1. Clonando projeto ### 
  
 Clone do projeto no github:
 
     git clone https://github.com/PedroJeunon/desafioContaAzul.git
 
-#### 1.2. Importando Projeto STS ####  
+### 1.2. Importando Projeto STS ###  
 
 <img src="docs/ImportandoSTS.gif" />
 
 
-#### 1.3. Executando projeto STS ####
+### 1.3. Executando projeto STS ###
 
 <img src="docs/ExecutandoSTS.gif" />
 
 
-#### 1.4. Rodando testes unitarios STS #### 
+### 1.4. Rodando testes unitarios STS ### 
 
 <img src="docs/TestesUnitariosTS.gif" />
 
@@ -44,17 +44,17 @@ Clone do projeto no github:
 ## 2. Testes automatizados Postman ##
 O arquivo para realização dos testes estao dentro do projeto na pasta de [test](https://github.com/PedroJeunon/desafioContaAzul/blob/master/src/test/ContaAzul.postman_collection.json)
 
-#### 2.1. Importando Projeto Postman ####
+### 2.1. Importando Projeto Postman ###
 
 <img src="docs/ImportandoPostman.gif" />
 
-#### 2.2. Executando Projeto Postman ####
+### 2.2. Executando Projeto Postman ###
 
 <img src="docs/ExecutandoPostman.gif" />
 
 ## 3. Operações ##
 
-#### 3.1. Criar boleto ####
+### 3.1. Criar boleto ###
 
 - Metodo POST
 - URL http://localhost:8080/rest/bankslips
@@ -73,7 +73,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - 400 : Bankslip not provided in the request body
 - 422 : Invalid bankslip provided.The possible reasons are: A field of the provided bankslip was null or with invalid values
 
-#### 3.2. Listar boletos ####
+### 3.2. Listar boletos ###
 - Metodo GET
 - URL http://localhost:8080/rest/bankslips
 - Saida JSON
@@ -86,10 +86,10 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 			"customer":"Ford Prefect Company",
 		},
 		{
-		"id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
-		"due_date":"2018-02-01",
-		"total_in_cents":"200000",
-		"customer":"Zaphod Company",
+			"id":"c2dbd236-3fa5-4ccc-9c12-bd0ae1d6dd89",
+			"due_date":"2018-02-01",
+			"total_in_cents":"200000",
+			"customer":"Zaphod Company",
 		}
 	]
 </code></pre>
@@ -99,7 +99,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - 204 : No Content
 
 
-#### 3.3. Ver detalhes ####
+### 3.3. Ver detalhes ###
 - Metodo GET
 - URL http://localhost:8080/rest/bankslips/{id}
 - Saida JSON
@@ -120,7 +120,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - 404 : Bankslip not found with the specified id
 
 
-#### 3.4. Pagar um boleto ####
+### 3.4. Pagar um boleto ###
 - Metodo PUT
 - URL http://localhost:8080/rest/bankslips/{id}/pay
 - Saida JSON
@@ -136,7 +136,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - 403 : Bankslip not modified.The status is the same or ID of link does not corresponding the ID of body or Status was invalid
 - 404 : Bankslip not found with the specified id
 
-#### 3.5. Cancelar um boleto ####
+### 3.5. Cancelar um boleto ###
 
 - Metodo DELETE
 - URL http://localhost:8080/rest/bankslips/{id}/cancel
