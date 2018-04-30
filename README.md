@@ -68,7 +68,7 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 	}
 </code></pre>
 
-**Mensagens Respostas
+<strong>Mensagens Respostas</strong>:
 - 201 : Bankslip created
 - 400 : Bankslip not provided in the request body
 - 422 : Invalid bankslip provided.The possible reasons are: A field of the provided bankslip was null or with invalid values
