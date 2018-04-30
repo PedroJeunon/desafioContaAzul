@@ -8,7 +8,9 @@ No final do desafio vamos ter os seguintes endpoints para:
 - Pagar um boleto
 - Cancelar um boleto
 
-### Ferramentas ###
+* Algumas descrições estão em .gif para visualizar melhor a forma de utilização.
+
+## Ferramentas Utilizadas##
  - Java 8
  - Banco de dados H2
  - Maven
@@ -16,7 +18,7 @@ No final do desafio vamos ter os seguintes endpoints para:
  - Junit
  - Postman
 
-### Criando Projeto ###
+## Criando Projeto ##
 
 #### Clonando projeto #### 
  
@@ -25,3 +27,19 @@ Clone do projeto no github:
     git clone https://github.com/PedroJeunon/desafioContaAzul.git
 
 #### Importando Projeto STS ####  
+
+
+#### Executando projeto STS ####
+
+
+#### Rodando testes unitarios STS #### 
+
+
+## Testes automatizados Postman ##
+
+#### Importando Projeto Postman ####
+
+#### Executando Projeto Postman ####
+
+
+
