@@ -59,16 +59,16 @@ O arquivo para realização dos testes estao dentro do projeto na pasta de [test
 - Metodo POST
 - URL http://localhost:8080/rest/bankslips
 - Entrada JSON
-'''
+<pre><code>
 	{
 		"due_date":"2018-01-01",
 		"total_in_cents":"100000",
 		"customer":"Trillian Company",
 		"status":"PENDING"
 	}
-'''
+</code></pre>
 
-Mensagens Respostas
+**Mensagens Respostas
 - 201 : Bankslip created
 - 400 : Bankslip not provided in the request body
 - 422 : Invalid bankslip provided.The possible reasons are: A field of the provided bankslip was null or with invalid values
