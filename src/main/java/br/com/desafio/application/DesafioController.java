@@ -29,6 +29,12 @@ public class DesafioController {
 	@Autowired
 	private DesafioService desafioService;
 
+	/**
+	 * Metodo POST de criar boleto.
+	 * 
+	 * @param boleto
+	 * @return
+	 */
 	@RequestMapping(path = "/bankslips", method = RequestMethod.POST)
 	public ResponseEntity<Object> criarBoleto(@RequestBody Boleto boleto) {
 		MensagensRespostaEnum retorno = desafioService.criarBoleto(boleto);
@@ -50,17 +56,36 @@ public class DesafioController {
 		return new ResponseEntity<Object>(boletos, HttpStatus.OK);
 	}
 
+	/**
+	 * Metodo para buscar o boleto baseado no id do boleto.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(path = "/bankslips/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Boleto> detalharBoleto(@PathVariable("id") String id) throws Exception {
 		Boleto boleto = desafioService.recuperarBoleto(id);
 		return new ResponseEntity<Boleto>(boleto, HttpStatus.OK);
 	}
 
+	/**
+	 * Metodo para pagar o boleto baseado no id do boleto.
+	 * @param id
+	 * @param boleto
+	 * @return
+	 */
 	@RequestMapping(path = "/bankslips/{id}/pay", method = RequestMethod.PUT)
 	public ResponseEntity<Object> pagarBoleto(@PathVariable("id") String id, @RequestBody Boleto boleto) {
 		return alterarStatus(id, boleto);
 	}
 
+	/**
+	 * Metodo para cancelar o boleto baseado no id do boleto.
+	 * @param id
+	 * @param boleto
+	 * @return
+	 */
 	@RequestMapping(path = "/bankslips/{id}/cancel", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> cancelarBoleto(@PathVariable("id") String id, @RequestBody Boleto boleto) {
 		return alterarStatus(id, boleto);

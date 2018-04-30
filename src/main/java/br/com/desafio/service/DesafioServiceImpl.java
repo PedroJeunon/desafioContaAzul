@@ -24,6 +24,7 @@ public class DesafioServiceImpl implements DesafioService {
 	@Autowired
 	private BoletoRepository repository;
 
+	
 	public MensagensRespostaEnum criarBoleto(Boleto boleto) {
 		try {
 			// Metodo para geração do ID randomico
