@@ -41,7 +41,7 @@ Clone do projeto no github:
 <img src="docs/TestesUnitariosTS.gif" />
 
 
-## 2. Testes automatizados Postman ##
+## 2. Testes integrados Postman ##
 O arquivo para realização dos testes estao dentro do projeto na pasta de [test](https://github.com/PedroJeunon/desafioContaAzul/blob/master/src/test/ContaAzul.postman_collection.json)
 
 ### 2.1. Importando Projeto Postman ###
